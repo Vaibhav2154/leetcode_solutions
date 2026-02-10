@@ -19,7 +19,7 @@ leetcode_solutions/
 ### Hashing
 - **Problem 1** - Two Sum ([Solution](hashing/1.py))
 - **Problem 219** - Contains Duplicate II ([Solution](hashing/219.py))
-- **Problem 3719** ([Solution](hashing/3719.py))
+- **Problem 3719** - Longest Balanced Subarray ([Solution](hashing/3719.py))
 
 ### Math
 - **Problem 7** - Reverse Integer ([Solution](math/7.py))
@@ -37,13 +37,19 @@ leetcode_solutions/
 Each solution file contains a `Solution` class with the main method(s) to solve the problem. To use any solution:
 
 ```python
-from hashing.1 import Solution
+import importlib
+
+# Load a solution (e.g., Two Sum from hashing/1.py)
+solution_module = importlib.import_module('hashing.1', package='.')
+Solution = solution_module.Solution
 
 # Example: Two Sum
 solution = Solution()
 result = solution.twoSum([2, 7, 11, 15], 9)
 print(result)  # Output: [0, 1]
 ```
+
+**Note:** Since solution files are named with problem numbers (e.g., `1.py`), you'll need to use `importlib.import_module()` to import them as module names cannot start with digits in Python.
 
 ## 📝 About
 
