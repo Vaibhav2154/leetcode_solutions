@@ -37,19 +37,22 @@ leetcode_solutions/
 Each solution file contains a `Solution` class with the main method(s) to solve the problem. To use any solution:
 
 ```python
-import importlib
+import importlib.util
+import sys
 
 # Load a solution (e.g., Two Sum from hashing/1.py)
-solution_module = importlib.import_module('hashing.1', package='.')
-Solution = solution_module.Solution
+spec = importlib.util.spec_from_file_location("solution", "hashing/1.py")
+solution_module = importlib.util.module_from_spec(spec)
+sys.modules["solution"] = solution_module
+spec.loader.exec_module(solution_module)
 
 # Example: Two Sum
-solution = Solution()
+solution = solution_module.Solution()
 result = solution.twoSum([2, 7, 11, 15], 9)
 print(result)  # Output: [0, 1]
 ```
 
-**Note:** Since solution files are named with problem numbers (e.g., `1.py`), you'll need to use `importlib.import_module()` to import them as module names cannot start with digits in Python.
+**Note:** Since solution files are named with problem numbers (e.g., `1.py`), you'll need to use `importlib.util` to load them as module names cannot start with digits in Python.
 
 ## 📝 About
 
